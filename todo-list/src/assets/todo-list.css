@@ -1,0 +1,18 @@
+* {
+  background: #1B2D48;
+}
+.title {
+  color: #FFF;
+  font-family: Microsoft New Tai Lue;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 8px;
+}
+.form-control {
+  width: 561px;
+}
+.add {
+  font-weight: bold;
+}
