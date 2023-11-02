@@ -1,17 +1,26 @@
 <template>
   <div class="text-center mt-5">
     <p class="h2 title">TO-DO LIST</p>
-    <div class="add_task hstack gap-3 d-flex justify-content-center">
+    <div class="add_task hstack gap-3 d-flex justify-content-center mb-3">
       <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="新增你的待辦事項">
       <button type="button" class="btn add btn-primary">+</button>
     </div>
-      <ul>
-      <li v-for="(todo, index) in todos" :key="index">
-        {{ todo }}
-        <button @click="removeTodo(index)">Remove</button>
-      </li>
-    </ul>
-  </div>
+    <div class="card text-center border-light">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">全部</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">進行中</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">已完成</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>  
 </template>
 
 <script>

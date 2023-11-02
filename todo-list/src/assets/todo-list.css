@@ -1,8 +1,5 @@
-* {
-  background: #1B2D48;
-}
 .title {
-  color: #FFF;
+  color: #1B2D48;
   font-family: Microsoft New Tai Lue;
   font-size: 40px;
   font-style: normal;
@@ -12,7 +9,18 @@
 }
 .form-control {
   width: 561px;
+  height: 35px;
 }
 .add {
   font-weight: bold;
+  height: 35px;
+}
+.btn-primary {
+  background-color: #83AFF0;
+  border-color: #83AFF0;
+  font-weight: bold;
+}
+.card {
+  border: none;
+  background-color: #3D5982;
 }
