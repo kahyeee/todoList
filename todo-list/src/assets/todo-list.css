@@ -1,5 +1,8 @@
+* {
+  background-color: #1B2D48;
+}
 .title {
-  color: #1B2D48;
+  color: #fff;
   font-family: Microsoft New Tai Lue;
   font-size: 40px;
   font-style: normal;
@@ -21,8 +24,8 @@
   font-weight: bold;
 }
 .card {
-  /* border: none;
-  background-color: #3D5982; */
+  border: none;
+  background-color: #3D5982;
   width: 50rem;
 }
 .material-symbols-outlined {
@@ -30,4 +33,13 @@
 }
 .completed {
   text-decoration: line-through;
+}
+.nav-link {
+  cursor: pointer;
+}
+.material-symbols-outlined {
+  cursor: pointer;
+}
+.nav-item {
+  
 }

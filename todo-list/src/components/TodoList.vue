@@ -8,14 +8,14 @@
     <div class="card border-light mx-auto">
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs text-center">
-          <li class="nav-item" @click="currentTab = 'all'">
-            <a class="nav-link" :class="{ active: currentTab === 'all' }">全部</a>
+          <li class="nav-item" @click="currentCard = 'all'">
+            <a class="nav-link" :class="{ active: currentCard === 'all' }">全部</a>
           </li>
-          <li class="nav-item" @click="currentTab = 'inProgress'">
-            <a class="nav-link" :class="{ active: currentTab === 'inProgress' }">進行中</a>
+          <li class="nav-item" @click="currentCard = 'inProgress'">
+            <a class="nav-link" :class="{ active: currentCard === 'inProgress' }">進行中</a>
           </li>
-          <li class="nav-item" @click="currentTab = 'completed'">
-            <a class="nav-link" :class="{ active: currentTab === 'completed' }">已完成</a>
+          <li class="nav-item" @click="currentCard = 'completed'">
+            <a class="nav-link" :class="{ active: currentCard === 'completed' }">已完成</a>
           </li>
         </ul>
       </div>
@@ -39,20 +39,20 @@ export default {
   data() {
     return {
       todos: [
-        { id: 1, text: '待辦事項1', done: false },
+        { id: 1, text: '吃飯', done: false },
         // 添加更多待办事项对象
       ],
       newTodo: '',
-      currentTab: 'all'
+      currentCard: 'all'
     };
   },
   computed: {
     filteredTodos() {
-      if (this.currentTab === 'all') {
+      if (this.currentCard === 'all') {
         return this.todos;
-      } else if (this.currentTab === 'inProgress') {
+      } else if (this.currentCard === 'inProgress') {
         return this.todos.filter(todo => !todo.done);
-      } else if (this.currentTab === 'completed') {
+      } else if (this.currentCard === 'completed') {
         return this.todos.filter(todo => todo.done);
       }
     }
