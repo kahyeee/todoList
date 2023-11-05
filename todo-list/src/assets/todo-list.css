@@ -21,6 +21,13 @@
   font-weight: bold;
 }
 .card {
-  border: none;
-  background-color: #3D5982;
+  /* border: none;
+  background-color: #3D5982; */
+  width: 50rem;
+}
+.material-symbols-outlined {
+  font-size: 20px;
+}
+.completed {
+  text-decoration: line-through;
 }

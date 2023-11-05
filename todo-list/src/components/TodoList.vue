@@ -1,46 +1,74 @@
 <template>
-  <div class="text-center mt-5">
-    <p class="h2 title">TO-DO LIST</p>
+  <div class="mt-5 container-fluid">
+    <p class="h2 title text-center">TO-DO LIST</p>
     <div class="add_task hstack gap-3 d-flex justify-content-center mb-3">
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="新增你的待辦事項">
-      <button type="button" class="btn add btn-primary">+</button>
+      <input v-model="newTodo" @keyup.enter="addTodo" type="text" class="form-control" placeholder="新增你的待辦事項">
+      <button @click="addTodo" type="button" class="btn add btn-primary">+</button>
     </div>
-    <div class="card text-center border-light">
+    <div class="card border-light mx-auto">
       <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">全部</a>
+        <ul class="nav nav-tabs card-header-tabs text-center">
+          <li class="nav-item" @click="currentTab = 'all'">
+            <a class="nav-link" :class="{ active: currentTab === 'all' }">全部</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">進行中</a>
+          <li class="nav-item" @click="currentTab = 'inProgress'">
+            <a class="nav-link" :class="{ active: currentTab === 'inProgress' }">進行中</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">已完成</a>
+          <li class="nav-item" @click="currentTab = 'completed'">
+            <a class="nav-link" :class="{ active: currentTab === 'completed' }">已完成</a>
           </li>
         </ul>
       </div>
+      <div class="form-check mt-2 hstack" v-for="todo in filteredTodos" :key="todo.id">
+        <div class="left gap-3">
+          <input class="form-check-input" type="checkbox" v-model="todo.done">
+          <label class="form-check-label" :class="{ 'completed': todo.done }">
+            {{ todo.text }}
+          </label>
+        </div>
+        <span class="material-symbols-outlined ms-auto" @click="removeTodo(todo)">
+            delete
+        </span>
+      </div>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      todos: [
+        { id: 1, text: '待辦事項1', done: false },
+        // 添加更多待办事项对象
+      ],
       newTodo: '',
-      todos: [],
+      currentTab: 'all'
     };
+  },
+  computed: {
+    filteredTodos() {
+      if (this.currentTab === 'all') {
+        return this.todos;
+      } else if (this.currentTab === 'inProgress') {
+        return this.todos.filter(todo => !todo.done);
+      } else if (this.currentTab === 'completed') {
+        return this.todos.filter(todo => todo.done);
+      }
+    }
   },
   methods: {
     addTodo() {
-      if (this.newTodo.trim() !== '') {
-        this.todos.push(this.newTodo);
-        this.newTodo = '';
+      if (this.newTodo.trim() === '') return;
+      this.todos.push({ id: this.todos.length + 1, text: this.newTodo, done: false });
+      this.newTodo = '';
+    },
+    removeTodo(todo) {
+      const index = this.todos.indexOf(todo);
+      if (index !== -1) {
+        this.todos.splice(index, 1);
       }
-    },
-    removeTodo(index) {
-      this.todos.splice(index, 1);
-    },
-  },
+    }
+  }
 };
 </script>
