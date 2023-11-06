@@ -21,21 +21,16 @@
       </div>
       <div class="card-body d-flex justify-content-center">
         <div class="card-body-item d-flex flex-column">
-          <div class="form-check mt-2 hstack" v-for="todo in filteredTodos" :key="todo.id">
+          <div class="form-check mt-2 hstack" v-for="todo in filteredTodos" :key="todo.id" >
             <div class="left gap-3">
               <input class="form-check-input" type="checkbox" v-model="todo.done">
               <label class="form-check-label" :class="{ 'completed': todo.done }">
                 {{ todo.text }}
               </label>
             </div>
-            <div class="icon d-flex flex-row-reverse">
-              <span class="material-symbols-outlined ms-auto" @click="removeTodo(todo)">
-                  delete
-              </span>
-              <span class="material-symbols-outlined ms-auto" @click="removeTodo(todo)">
-                  delete
-              </span>
-            </div>
+            <span class="material-symbols-outlined ms-auto" @click="removeTodo(todo)">
+                delete
+            </span>
           </div>
         </div>
       </div>  
