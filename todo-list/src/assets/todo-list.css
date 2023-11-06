@@ -1,8 +1,8 @@
 * {
-  background-color: #1B2D48;
+  background-color: #fff;
 }
 .title {
-  color: #fff;
+  color: #1B2D48;
   font-family: Microsoft New Tai Lue;
   font-size: 40px;
   font-style: normal;
@@ -18,14 +18,19 @@
   font-weight: bold;
   height: 35px;
 }
-.btn-primary {
+.custom-button {
   background-color: #83AFF0;
-  border-color: #83AFF0;
+  color: #fff;
+  border: none;
   font-weight: bold;
+
+  &:hover {
+    background-color: #3C649F;
+    color: #fff;
+  }
 }
 .card {
   border: none;
-  background-color: #3D5982;
   width: 50rem;
 }
 .material-symbols-outlined {
@@ -40,6 +45,22 @@
 .material-symbols-outlined {
   cursor: pointer;
 }
-.nav-item {
-  
+.card-header {
+  background-color: #fff;
+  border-color: #fff;
+}
+.nav-item .nav-link {
+  padding: 0.5rem 3rem;
+  margin: 0 1rem;
+  font-size: 20px;
+  color: #1B2D48;
+  font-weight: bold;
+  letter-spacing: 8px;
+}
+.nav-item .nav-link.active {
+  border-bottom: 8px solid #1B2D48; /* 更改选中状态字体粗细 */
+  /* 添加其他样式根据需要 */
+}
+.form-check {
+  width: 40rem;
 }

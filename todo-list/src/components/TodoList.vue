@@ -3,11 +3,11 @@
     <p class="h2 title text-center">TO-DO LIST</p>
     <div class="add_task hstack gap-3 d-flex justify-content-center mb-3">
       <input v-model="newTodo" @keyup.enter="addTodo" type="text" class="form-control" placeholder="新增你的待辦事項">
-      <button @click="addTodo" type="button" class="btn add btn-primary">+</button>
+      <button @click="addTodo" type="button" class="btn add btn-primary custom-button">+</button>
     </div>
     <div class="card border-light mx-auto">
-      <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs text-center">
+      <div class="card-header mb-2">
+        <ul class="nav card-header-item text-center d-flex justify-content-center">
           <li class="nav-item" @click="currentCard = 'all'">
             <a class="nav-link" :class="{ active: currentCard === 'all' }">全部</a>
           </li>
@@ -19,17 +19,26 @@
           </li>
         </ul>
       </div>
-      <div class="form-check mt-2 hstack" v-for="todo in filteredTodos" :key="todo.id">
-        <div class="left gap-3">
-          <input class="form-check-input" type="checkbox" v-model="todo.done">
-          <label class="form-check-label" :class="{ 'completed': todo.done }">
-            {{ todo.text }}
-          </label>
+      <div class="card-body d-flex justify-content-center">
+        <div class="card-body-item d-flex flex-column">
+          <div class="form-check mt-2 hstack" v-for="todo in filteredTodos" :key="todo.id">
+            <div class="left gap-3">
+              <input class="form-check-input" type="checkbox" v-model="todo.done">
+              <label class="form-check-label" :class="{ 'completed': todo.done }">
+                {{ todo.text }}
+              </label>
+            </div>
+            <div class="icon d-flex flex-row-reverse">
+              <span class="material-symbols-outlined ms-auto" @click="removeTodo(todo)">
+                  delete
+              </span>
+              <span class="material-symbols-outlined ms-auto" @click="removeTodo(todo)">
+                  delete
+              </span>
+            </div>
+          </div>
         </div>
-        <span class="material-symbols-outlined ms-auto" @click="removeTodo(todo)">
-            delete
-        </span>
-      </div>
+      </div>  
     </div>
   </div>
 </template>
