@@ -21,14 +21,18 @@
       </div>
       <div class="card-body d-flex justify-content-center">
         <div class="card-body-item d-flex flex-column">
-          <div class="form-check mt-2 hstack" v-for="todo in filteredTodos" :key="todo.id" >
+          <div class="form-check mt-2 hstack gap-3" v-for="todo in filteredTodos" :key="todo.id" >
             <div class="left gap-3">
               <input class="form-check-input" type="checkbox" v-model="todo.done">
-              <label class="form-check-label" :class="{ 'completed': todo.done }">
-                {{ todo.text }}
+              <label class="form-check-label" :class="{ 'completed': todo.done, 'editing': todo.id === editingTodoId }">
+                <input class="editForm" v-if="todo.id === editingTodoId" v-model="editedTodoText" @keyup.enter="saveEdit">
+                <span v-else @dblclick="startEditing(todo)">{{ todo.text }}</span>
               </label>
             </div>
-            <span class="material-symbols-outlined ms-auto" @click="removeTodo(todo)">
+            <span v-if="todo.id !== editingTodoId" class="material-symbols-outlined ms-auto" @click="startEditing(todo)">
+                edit
+            </span>
+            <span class="material-symbols-outlined" @click="removeTodo(todo)">
                 delete
             </span>
           </div>
@@ -47,7 +51,9 @@ export default {
         // 添加更多待办事项对象
       ],
       newTodo: '',
-      currentCard: 'all'
+      currentCard: 'all',
+      editingTodoId: null,
+      editedTodoText: '',
     };
   },
   computed: {
@@ -59,6 +65,7 @@ export default {
       } else if (this.currentCard === 'completed') {
         return this.todos.filter(todo => todo.done);
       }
+      return [];
     }
   },
   methods: {
@@ -72,7 +79,23 @@ export default {
       if (index !== -1) {
         this.todos.splice(index, 1);
       }
-    }
+    },
+    startEditing(todo) {
+      this.editingTodoId = todo.id;
+      this.editedTodoText = todo.text;
+    },
+    editTodo() {
+      // 处理编辑逻辑，例如保存编辑后的文本
+      // 在这个例子中，我们只是退出编辑状态
+      this.editingTodoId = null;
+    },
+    saveEdit() {
+      const editedTodo = this.todos.find(todo => todo.id === this.editingTodoId);
+      if (editedTodo) {
+        editedTodo.text = this.editedTodoText;
+        this.editingTodoId = null;
+      }
+    },
   }
 };
 </script>

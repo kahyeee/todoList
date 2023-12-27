@@ -64,3 +64,10 @@
 .form-check {
   width: 35rem;
 }
+.editForm {
+  width: 31.3rem;
+  border: 1px solid gray;
+  &:hover {
+    background-color: #fff;
+    border: gray;}
+}
